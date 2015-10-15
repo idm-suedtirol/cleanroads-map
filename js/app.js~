@@ -1,0 +1,88 @@
+var cleanroads = angular.module('cleanroads', []);
+
+cleanroads.controller('CleanRoadsCtrl', function ($scope) {
+	var self = $scope;
+	self.lang = navigator.language.substring(0,navigator.language.indexOf('-')) || navigator.userLanguage.substring(navigator.userLanguage.indexOf('-')) || 'it';
+	$('#'+self.lang).addClass("active");
+	self.initI18n = function(){
+		self.i18n = i18n
+	};
+	self.initMap = function(){
+		var view = new ol.View({
+		    units: 'm',
+		    zoom:11,
+		    center:[1230000,5785000]
+		});
+		var selectClick = new ol.interaction.Select({
+		  condition: ol.events.condition.click
+		});
+		var box = document.getElementById('popup');
+		var popup = new ol.Overlay({
+	  		element: box,
+			autoPan: true,
+	  		autoPanAnimation: {
+				duration: 250
+	  		},
+			positioning:'bottom-left',
+			offset:	[0,-40]
+		});
+		var map = new ol.Map({
+	  		layers: [
+				new ol.layer.Tile({
+			      		source: new ol.source.XYZ({
+	    				url: 'http://a1.acetate.geoiq.com/tiles/acetate/{z}/{x}/{y}.png' })
+				})
+			],
+			target: 'map',
+			view: view,
+			overlays:[popup]
+		});
+		map.addInteraction(selectClick);
+		map.on('click', function(evt) {
+			var feature = map.forEachFeatureAtPixel(evt.pixel, 
+			 	function(feature, layer) {
+					var date = moment(feature.getProperties()['rel_time']);
+					self.feature = feature.getProperties();
+					/*var content = '<h2> '+i18n[self.lang]['station']+' <span class="stationname">'+feature.getProperties()['station_name']+'</span></h2>'+
+					'<div><label>Road temperature</label> <div>'+feature.getProperties()['rel_temperatura_suolo']+'</div></div>'+
+					'<div><label>Air temperature</label> <div>'+feature.getProperties()['rel_temperatura_ambientale']+'</div></div>'+
+					'<div><label>Wind</label> <div>'+feature.getProperties()['rel_velocita_vento']+'</div></div>'+
+					'<div><label>Humidity</label> <div>'+feature.getProperties()['rel_umidita_relativa']+'</div></div>'+
+					'<div class="footer"><label></label><div>Updated on '+date.format('lll')+'</div></div>';*/
+					var coordinate = feature.getGeometry().getCoordinates();
+					popup.setPosition(coordinate);   
+			 	}
+			); 
+		});
+	}
+	var  params = {
+                        request:'GetFeature',
+                        typeName:'edi:cleanroads_stations',
+                        outputFormat:'text/javascript',
+                        format_options: 'callback: getJson'
+        };
+	$.ajax({
+                url : 'http://geodata.integreen-life.bz.it/geoserver/wfs?'+$.param(params),
+                dataType : 'jsonp',
+                crossDomain: true,
+                jsonpCallback : 'getJson',
+                success : function(data) {
+			displayPoints(data);
+                },
+                error : function() {
+                        console.log('problems with data transfer');
+                }
+        });
+	function displayPoints(data){
+		var vectorSource = new ol.source.Vector({
+		  features: (new ol.format.GeoJSON()).readFeatures(data)
+		});
+		var cleanRoadsLayer = new ol.layer.Vector({
+			source: vectorSource,
+			style: [new ol.style.Style({
+				image: new ol.style.Icon(({src:'img/tis.png',anchor:[0,0],scale:0.5}))
+			})]
+		});
+		map.addLayer(cleanRoadsLayer);	
+	}
+});

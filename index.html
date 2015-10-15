@@ -1,0 +1,81 @@
+<!DOCTYPE HTML>
+<html ng-app="cleanroads" lang="it" ng-cloak>
+	<head>
+		<meta charset="utf-8" /> 
+		<link rel="stylesheet" type="text/css" href="styles/ol.css">
+		<link rel="stylesheet" type="text/css" href="styles/app.css">
+		<link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/ol.js"></script>
+		<script type="text/javascript" src="js/moment-with-locales.min.js"></script>
+		<script type="text/javascript" src="js/angular.min.js"></script>
+		<script type="text/javascript" src="js/i18n.js"></script>
+		<script type="text/javascript" src="js/app.js"></script>
+	</head>
+	<body ng-controller="CleanRoadsCtrl" ng-init="init()">
+		<div id="map"></div>
+		<aside class="legend">
+			<div class="langs bluepanel clearfix">
+				<ul>
+					<li><a href="javascript:void(0)" ng-class="lang=='it'?'active':''" ng-click="lang='it'">it</a></li>
+					<li><a href="javascript:void(0)" ng-class="lang=='de'?'active':''" ng-click="lang='de'">de</a></li>
+					<li><a href="javascript:void(0)" ng-class="lang=='en'?'active':''" ng-click="lang='en'">en</a></li>
+				</ul>
+			</div>
+			<div class="header">
+				<div class="logo">
+					<img src="img/logo.png" alt="Logo" width="100%">
+				</div>
+				<h2>Versione <strong>BETA</strong></h2>
+			</div>
+			<div class="bluepanel infos">
+				<div>
+					<h2>{{i18n[lang]['roadTemperature']}}</h2>
+					<ul>
+						<li class="tempok">
+							<span>{{i18n[lang]['over']}}</span>
+						</li>
+						<li class="tempwarning">
+							<span>{{i18n[lang]['inbetween']}}</span>
+						</li>
+						<li class="temphazard">
+							<span>{{i18n[lang]['under']}}</span>
+						</li>
+					</ul>
+				</div>
+				<div>
+					<h2>{{i18n[lang]['rainfall']}}</h2>
+					<ul>
+						<li class="no-rainfall">
+							<span>{{i18n[lang]['noRainfall']}}</span>
+						</li>
+						<li class="low-rainfall">
+							<span>{{i18n[lang]['lowIntensity']}}</span>
+						</li>
+						<li class="medium-rainfall">
+							<span>{{i18n[lang]['mediumIntensity']}}</span>
+						</li>
+						<li class="high-rainfall">
+							<span>{{i18n[lang]['highIntensity']}}</span>
+						</li>
+						<li class="low-snow">
+							<span>{{i18n[lang]['lowSnow']}}</span>
+						</li>
+						<li class="medium-snow">
+							<span>{{i18n[lang]['mediumSnow']}}</span>
+						</li>
+						<li class="high-snow">
+							<span>{{i18n[lang]['highSnow']}}</span>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</aside>
+		<div id="popup" class="popup"></div>
+	</body>
+</html>
+			</div>
+		</aside>
+		<div id="popup" class="popup"></div>
+	</body>
+</html>
