@@ -26,7 +26,7 @@ var i18n = {
 		humidity:'Umidità',	
 		updatedOn:'Aggiornato alle',	
 		over:'Superiore a 5°C',
-		inbetween:'Cmpresa tra 0°C e 5°C',
+		inbetween:'Compresa tra 0°C e 5°C',
 		under:'Inferiore a 0°C',
 		rainfall:'Precipitazioni',
 		noRainfall:'Nessuna precipitazione',
