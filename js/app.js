@@ -79,8 +79,8 @@ cleanroads.controller('CleanRoadsCtrl', function ($scope) {
 				console.log(feature);
 				var temp = feature.getProperties()['rel_temperatura_map'];
 				var weather = feature.getProperties()['rel_precipitazione_map'];
-				var image = 'img/tis.png';
-				if (temp == 1){
+				var image = 'img/ico_thermometer.svg';
+				if (temp == 0){
 					switch (weather){
 						case 0: image = 'img/tis.png';break;
 						case 11: image = 'img/tis.png';break;
@@ -90,19 +90,9 @@ cleanroads.controller('CleanRoadsCtrl', function ($scope) {
 						case 22: image = 'img/tis.png';break;
 						case 23: image = 'img/tis.png';break;
 					}
-				}else if (temp == 2){
+				}else if (temp == 1){
 					switch (weather){
-						case 0: image = 'img/tis.png';break;
-						case 11: image = 'img/tis.png';break;
-						case 12: image = 'img/tis.png';break;
-						case 13: image = 'img/tis.png';break;
-						case 21: image = 'img/tis.png';break;
-						case 22: image = 'img/tis.png';break;
-						case 23: image = 'img/tis.png';break;
-					}
-				}else if (temp == 3){
-					switch (weather){
-						case 0: image = 'img/tis.png';break;
+						case 0: image = 'img/ico_thermometer.svg';break;
 						case 11: image = 'img/tis.png';break;
 						case 12: image = 'img/tis.png';break;
 						case 13: image = 'img/tis.png';break;
@@ -115,7 +105,7 @@ cleanroads.controller('CleanRoadsCtrl', function ($scope) {
 				
 				
 				return [new ol.style.Style({
-					image: new ol.style.Icon(({src:image,anchor:[0,0],scale:0.5}))
+					image: new ol.style.Icon(({src:image,anchor:[0,0]}))
 				})]
 		}
 		function displayPoints(data){
