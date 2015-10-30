@@ -35,7 +35,7 @@ cleanroads.controller('CleanRoadsCtrl', function ($scope) {
 			var feature = map.forEachFeatureAtPixel(evt.pixel, 
 		 		function(feature, layer) {
 					$scope.feature = feature;
-					console.log(feature);
+					self.icon = getIconByFeature(feature);
 					$scope.updatePopup();
 					var coordinate = $scope.feature.getGeometry().getCoordinates();
 					popup.setPosition(coordinate);   
@@ -53,7 +53,7 @@ cleanroads.controller('CleanRoadsCtrl', function ($scope) {
 				'<div><label>'+$scope.i18n[$scope.lang]['airTemperature']+'</label> <div>'+$scope.feature.getProperties()['rel_temperatura_ambientale']+'</div></div>'+
 				'<div><label>'+$scope.i18n[$scope.lang]['wind']+'</label> <div>'+$scope.feature.getProperties()['rel_velocita_vento']+'</div></div>'+
 				'<div><label>'+$scope.i18n[$scope.lang]['humidity']+'</label> <div>'+$scope.feature.getProperties()['rel_umidita_relativa']+'</div></div>'+
-				'<div class="footer"><label></label><div>'+$scope.i18n[$scope.lang]['updatedOn']+' '+date.locale($scope.lang).format('HH.mm DD/MM/YY')+'</div></div>';
+				'<div class="footer"><img src="'+self.icon+'"><div>'+$scope.i18n[$scope.lang]['updatedOn']+' '+date.locale($scope.lang).format('HH.mm DD/MM/YY')+'</div></div>';
 				box.innerHTML=content;
 			}
 		}
@@ -75,38 +75,41 @@ cleanroads.controller('CleanRoadsCtrl', function ($scope) {
         	                console.log('problems with data transfer');
                 	}
 	        });
-		var customStyleFunction = function(feature, resolution) {
-				console.log(feature);
-				var temp = feature.getProperties()['rel_temperatura_map'];
-				var weather = feature.getProperties()['rel_precipitazione_map'];
-				var image = 'img/ico_thermometer.svg';
-				if (temp == 0){
-					switch (weather){
-						case 0: image = 'img/tis.png';break;
-						case 11: image = 'img/tis.png';break;
-						case 12: image = 'img/tis.png';break;
-						case 13: image = 'img/tis.png';break;
-						case 21: image = 'img/tis.png';break;
-						case 22: image = 'img/tis.png';break;
-						case 23: image = 'img/tis.png';break;
-					}
-				}else if (temp == 1){
-					switch (weather){
-						case 0: image = 'img/ico_thermometer.svg';break;
-						case 11: image = 'img/tis.png';break;
-						case 12: image = 'img/tis.png';break;
-						case 13: image = 'img/tis.png';break;
-						case 21: image = 'img/tis.png';break;
-						case 22: image = 'img/tis.png';break;
-						case 23: image = 'img/tis.png';break;
-					}
+		function getIconByFeature(feature){
+			var temp = feature.getProperties()['rel_temperatura_map'];
+			var weather = feature.getProperties()['rel_precipitazione_map'];
+			console.log(temp);
+			console.log(weather);
+			var image = 'img/pin-dx-street.png';
+			if (temp === 0){
+				switch (weather){
+					case 0: image = 'img/pin-dx-temp.png';break;
+					case 11: image = 'img/pin-dx-temp-rain-01.png';break;
+					case 12: image = 'img/pin-dx-temp-rain-02.png';break;
+					case 13: image = 'img/pin-dx-temp-rain-03.png';break;
+					case 21: image = 'img/pin-dx-temp-snow-01.png';break;
+					case 22: image = 'img/pin-dx-temp-snow-02.png';break;
+					case 23: image = 'img/pin-dx-temp-snow-03.png';break;
 				}
-				
-				
-				
-				return [new ol.style.Style({
-					image: new ol.style.Icon(({src:image,anchor:[0,0]}))
-				})]
+			}else if (temp === 1){
+				switch (weather){
+					case 0: image = 'img/pin-dx-street.png';break;
+					case 11: image = 'img/pin-dx-rain-01.png';break;
+					case 12: image = 'img/pin-dx-rain-02.png';break;
+					case 13: image = 'img/pin-dx-rain-03.png';break;
+					case 21: image = 'img/pin-dx-snow-01.png';break;
+					case 22: image = 'img/pin-dx-snow-02.png';break;
+					case 23: image = 'img/pin-dx-snow-03.png';break;
+				}
+			}
+			return image;
+		}
+		
+		var customStyleFunction = function(feature) {
+			var image = getIconByFeature(feature);
+			return [new ol.style.Style({
+				image: new ol.style.Icon(({src:image,anchor:[0,0],anchorOrigin:'bottom-left',scale:0.5}))
+			})]
 		}
 		function displayPoints(data){
 			var vectorSource = new ol.source.Vector({

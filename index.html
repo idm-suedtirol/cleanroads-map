@@ -31,7 +31,11 @@
 			<div class="bluepanel infos">
 				<div>
 					<h2>{{i18n[lang]['roadTemperature']}}</h2>
-					<ul><!--
+					<ul>
+						<li class="no-rainfall">
+							<span>{{i18n[lang]['noRainfall']}}</span>
+						</li>
+					<!--
 						<li class="tempok">
 							<span>{{i18n[lang]['over']}}</span>
 						</li>
@@ -41,14 +45,11 @@
 						<li class="temphazard">
 							<span>{{i18n[lang]['under']}}</span>
 						</li>
-					</ul>
+					<!--</ul>
 				</div>
 				<div>
 					<h2>{{i18n[lang]['rainfall']}}</h2>
-					<ul>
-						<li class="no-rainfall">
-							<span>{{i18n[lang]['noRainfall']}}</span>
-						</li>
+					<ul>-->
 						<li class="low-rainfall">
 							<span>{{i18n[lang]['lowIntensity']}}</span>
 						</li>
@@ -69,13 +70,45 @@
 						</li>
 					</ul>
 				</div>
+				<p>{{i18n[lang]['measurementNote']}}</p>
+			</div>
+			<div class="legend-footer">
+				<div class="footer-content clearfix">
+					<p><strong><a href="mailto:open@tis.bz.it">{{i18n[lang]['feedback']}}</a> | <a href="http://clean-roads.eu/" target="_blank">{{i18n[lang]['cleanroads']}}</a></strong></p>
+					<ul>
+						<li><a href="http://www.madeincima.it/" target="_blank">{{i18n[lang]['asplic']}}</a></li>
+						<li><a href="http://www.madeincima.it/" target="_blank">{{i18n[lang]['designedBy']}}</a></li>
+					</ul>
+					<a href="http://ec.europa.eu/environment/life/" target="_blank" class="lifelogo" title="life-program"><img src="img/life.jpg" width="60px" title="life programm"></a>
+				</div>
 			</div>
 		</aside>
-		<div id="popup" class="popup"></div>
-	</body>
-</html>
+		<div class="more" ng-init="contribute=false;partner=false;">
+			<div class="voice clearfix partner" ng-class="partner?'show-more':''">
+				<a class="title" href="" ng-click="partner=!partner">{{i18n[lang]['partner']}}</a>
+				<div class="content">
+					<a href="http://www.provincia.tn.it/" target="_blank" title="Provincia di Trento"><img src="img/trento.jpg" alt="Provincia di Trento"></a>
+					<a href="http://www.famassystem.it/" target="_blank" title="Famas Systems"><img src="img/famas.gif" alt="FAMAS"></a>
+					<a href="http://www.tis.bz.it/" target="_blank" title="TIS innovation park"><img src="img/tis.png" alt="TIS innovation park"></a>
+					<a href="http://ec.europa.eu/environment/life/" target="_blank" title="life-program"><img src="img/life.jpg" title="life programm"></a>
+				</div>
 			</div>
-		</aside>
+			<div class="voice clearfix contribute" ng-class="contribute?'show-more':''">
+				<a class="title" href="" ng-click="contribute=!contribute">{{i18n[lang]['contribute']}}</a>
+				<div class="content">
+					<ul>
+						<li><a href="mailto:open@tis.bz.it">{{i18n[lang]['feedback']}}</a></li>
+						<li><a href="http://clean-roads.eu/" target="_blank">{{i18n[lang]['cleanroads']}}</a></li>
+					</ul>
+				</div>
+			</div>
+				<!--<div>	
+					<ul>
+						<li><a href="mailto:open@tis.bz.it">blid1</a></li>
+						<li><a href="http://clean-roads.eu/" target="_blank">blid2</a></li>
+					</ul>
+				</div>-->
+		</div>
 		<div id="popup" class="popup"></div>
 	</body>
 </html>
