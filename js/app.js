@@ -7,8 +7,8 @@ cleanroads.controller('CleanRoadsCtrl', function ($scope) {
 		$('#'+$scope.lang).addClass("active");
 		var view = new ol.View({
 		    units: 'm',
-		    zoom:11,
-		    center:[1230000,5785000]
+		    resolution:100,	
+		    center:[1235000,5805000],
 		});
 		var box = document.getElementById('popup');
 		var popup = new ol.Overlay({
@@ -24,7 +24,14 @@ cleanroads.controller('CleanRoadsCtrl', function ($scope) {
   			layers: [
 				new ol.layer.Tile({
 		      			source: new ol.source.XYZ({
-    					url: 'http://a1.acetate.geoiq.com/tiles/acetate/{z}/{x}/{y}.png' })
+    						url: 'https://cartodb-basemaps-a.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png',
+						 attributions: [
+    							new ol.Attribution({
+      								html: '&copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+    							}),
+    							ol.source.OSM.ATTRIBUTION
+  						], 
+					})
 				})
 			],
 			target: 'map',
@@ -48,13 +55,25 @@ cleanroads.controller('CleanRoadsCtrl', function ($scope) {
 		$scope.updatePopup = function(){
 			if($scope.feature){
 				var date = moment($scope.feature.getProperties()['rel_time']);
-				var content = '<h2>'+$scope.i18n[$scope.lang]['station']+' <span class="stationname">'+$scope.feature.getProperties()['station_name']+'</span></h2>'+
+				var iconPos,contentPos;
+	 	               	if ($scope.feature.getGeometry().getCoordinates()[0]<view.getCenter()[0]){
+                	                popup.setPositioning("bottom-right");
+                        	}else{
+                	                popup.setPositioning("bottom-left");
+					iconPos = 'left:0;right:auto';
+					contentPos = 'float:right';
+				}
+
+				var content = '<a href="#" class="close" id="closeSign">&#x274c;</a><h2>'+$scope.i18n[$scope.lang]['station']+' <span class="stationname">'+$scope.feature.getProperties()['station_name']+'</span></h2>'+
 				'<div><label>'+$scope.i18n[$scope.lang]['roadTemperature']+'</label> <div>'+$scope.feature.getProperties()['rel_temperatura_suolo']+'</div></div>'+
 				'<div><label>'+$scope.i18n[$scope.lang]['airTemperature']+'</label> <div>'+$scope.feature.getProperties()['rel_temperatura_ambientale']+'</div></div>'+
 				'<div><label>'+$scope.i18n[$scope.lang]['wind']+'</label> <div>'+$scope.feature.getProperties()['rel_velocita_vento']+'</div></div>'+
 				'<div><label>'+$scope.i18n[$scope.lang]['humidity']+'</label> <div>'+$scope.feature.getProperties()['rel_umidita_relativa']+'</div></div>'+
-				'<div class="footer"><img src="'+self.icon+'"><div>'+$scope.i18n[$scope.lang]['updatedOn']+' '+date.locale($scope.lang).format('HH.mm DD/MM/YY')+'</div></div>';
-				box.innerHTML=content;
+				'<img src="'+self.icon+'" class="popup-icon" style="'+iconPos+'"><div class="footer" style="'+contentPos+'">'+$scope.i18n[$scope.lang]['updatedOn']+' '+date.locale($scope.lang).format('HH.mm DD/MM/YY')+'</div>';
+				box.innerHTML = content;
+				$('#closeSign').click(function(){
+					popup.setPosition(undefined);
+				});
 			}
 		}
 		var  params = {
@@ -78,28 +97,30 @@ cleanroads.controller('CleanRoadsCtrl', function ($scope) {
 		function getIconByFeature(feature){
 			var temp = feature.getProperties()['rel_temperatura_map'];
 			var weather = feature.getProperties()['rel_precipitazione_map'];
-			console.log(temp);
-			console.log(weather);
-			var image = 'img/pin-dx-street.png';
+			var positioning = 'dx';
+			if (feature.getGeometry().getCoordinates()[0]<view.getCenter()[0]){
+				positioning = 'sn';
+			}
+			var image = 'img/pin-'+positioning+'-street.png';
 			if (temp === 0){
 				switch (weather){
-					case 0: image = 'img/pin-dx-temp.png';break;
-					case 11: image = 'img/pin-dx-temp-rain-01.png';break;
-					case 12: image = 'img/pin-dx-temp-rain-02.png';break;
-					case 13: image = 'img/pin-dx-temp-rain-03.png';break;
-					case 21: image = 'img/pin-dx-temp-snow-01.png';break;
-					case 22: image = 'img/pin-dx-temp-snow-02.png';break;
-					case 23: image = 'img/pin-dx-temp-snow-03.png';break;
+					case 0: image = 'img/pin-'+positioning+'-temp.png';break;
+					case 11: image = 'img/pin-'+positioning+'-temp-rain-01.png';break;
+					case 12: image = 'img/pin-'+positioning+'-temp-rain-02.png';break;
+					case 13: image = 'img/pin-'+positioning+'-temp-rain-03.png';break;
+					case 21: image = 'img/pin-'+positioning+'-temp-snow-01.png';break;
+					case 22: image = 'img/pin-'+positioning+'-temp-snow-02.png';break;
+					case 23: image = 'img/pin-'+positioning+'-temp-snow-03.png';break;
 				}
 			}else if (temp === 1){
 				switch (weather){
-					case 0: image = 'img/pin-dx-street.png';break;
-					case 11: image = 'img/pin-dx-rain-01.png';break;
-					case 12: image = 'img/pin-dx-rain-02.png';break;
-					case 13: image = 'img/pin-dx-rain-03.png';break;
-					case 21: image = 'img/pin-dx-snow-01.png';break;
-					case 22: image = 'img/pin-dx-snow-02.png';break;
-					case 23: image = 'img/pin-dx-snow-03.png';break;
+					case 0: image = 'img/pin-'+positioning+'-street.png';break;
+					case 11: image = 'img/pin-'+positioning+'-rain-01.png';break;
+					case 12: image = 'img/pin-'+positioning+'-rain-02.png';break;
+					case 13: image = 'img/pin-'+positioning+'-rain-03.png';break;
+					case 21: image = 'img/pin-'+positioning+'-snow-01.png';break;
+					case 22: image = 'img/pin-'+positioning+'-snow-02.png';break;
+					case 23: image = 'img/pin-'+positioning+'-snow-03.png';break;
 				}
 			}
 			return image;
@@ -107,8 +128,12 @@ cleanroads.controller('CleanRoadsCtrl', function ($scope) {
 		
 		var customStyleFunction = function(feature) {
 			var image = getIconByFeature(feature);
+			var anchor = 'bottom-left';
+			if (feature.getGeometry().getCoordinates()[0]<view.getCenter()[0]){
+				anchor = 'bottom-right';
+			}	
 			return [new ol.style.Style({
-				image: new ol.style.Icon(({src:image,anchor:[0,0],anchorOrigin:'bottom-left',scale:0.5}))
+				image: new ol.style.Icon(({src:image,anchor:[0,0],anchorOrigin:anchor,scale:0.5}))
 			})]
 		}
 		function displayPoints(data){
@@ -122,9 +147,4 @@ cleanroads.controller('CleanRoadsCtrl', function ($scope) {
 			map.addLayer(cleanRoadsLayer);	
 		}
 	};
-	/*
-		var selectClick = new ol.interaction.Select({
-		  condition: ol.events.condition.click
-		});
-	map.addInteraction(selectClick);*/
 });

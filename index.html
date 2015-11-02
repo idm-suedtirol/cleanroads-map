@@ -11,6 +11,8 @@
 		<script type="text/javascript" src="js/angular.min.js"></script>
 		<script type="text/javascript" src="js/i18n.js"></script>
 		<script type="text/javascript" src="js/app.js"></script>
+		<meta name="viewport" content="width=device-width, user-scalable=no">
+
 	</head>
 	<body ng-controller="CleanRoadsCtrl" ng-init="init()">
 		<div id="map"></div>
@@ -22,15 +24,19 @@
 					<li><a href="javascript:void(0)" ng-class="lang=='en'?'active':''" ng-click="lang='en'">en</a></li>
 				</ul>
 			</div>
-			<div class="header">
+			<div class="header clearfix" ng-init="closed=false">
 				<div class="logo">
 					<img src="img/logo.png" alt="Logo" width="100%">
 				</div>
-				<h2>Versione <strong>BETA</strong></h2>
+				<div class="title">
+					<a href="javascript:void(0)" class="close" ng-show="closed" ng-click="closed=false">&#x274c;</a>
+					<a href="javascript:void(0)" class="close" ng-show="!closed" ng-click="closed=true">&#9776;</a>
+					<h2>Versione <strong>BETA</strong></h2>
+				</div>
 			</div>
-			<div class="bluepanel infos">
+			<div class="bluepanel infos" ng-class="closed?'openinfo':''">
 				<div>
-					<h2>{{i18n[lang]['roadTemperature']}}</h2>
+					<h2>{{i18n[lang]['legend']}}</h2>
 					<ul>
 						<li class="no-rainfall">
 							<span>{{i18n[lang]['noRainfall']}}</span>
@@ -109,6 +115,7 @@
 					</ul>
 				</div>-->
 		</div>
-		<div id="popup" class="popup"></div>
+		<div id="popup" class="popup clearfix">
+		</div>
 	</body>
 </html>

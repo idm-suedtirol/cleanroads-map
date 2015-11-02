@@ -1,11 +1,12 @@
 var i18n = {
 	en:{
 		station:'Station',
-		roadTemperature:'Legend',
+		legend:'Legend',
+		roadTemperature:'Road temperature',
 		airTemperature:'Air temperature',
 		wind:'Wind',
 		humidity:'Humidity',	
-		updatedOn:'Updated on',	
+		updatedOn:'Updated at',	
 		over:'Over 5°C',
 		inbetween:'Between 0°C and 5°C',
 		under:'Under 2°C',
@@ -27,7 +28,8 @@ var i18n = {
 	},
 	it:{
 		station:'Stazione',
-		roadTemperature:'Legenda',
+		legend:'Legenda',
+		roadTemperature:'Temperatura strada',
 		airTemperature:'Temperatura aria',
 		wind:'Velocità vento',
 		humidity:'Umidità relativa',	
@@ -53,7 +55,8 @@ var i18n = {
 	},
 	de:{
 		station:'Messstation',
-		roadTemperature:'Legende',
+		legend:'Legende',
+		roadTemperature:'Strassentemperatur',
 		airTemperature:'Lufttemperatur',
 		wind:'Wind',
 		humidity:'Feuchtigkeit',	
@@ -69,12 +72,12 @@ var i18n = {
 		lowSnow:'Leichter Schneefall',
 		mediumSnow:'Scheefall',
 		highSnow:'Starker Schneefall',
-		measurementNote:'Attenzione: i dati visualizzati sono rappresentativi del punto di misurazione e non dell\'intera tratta stradale ',
-		feedback:'Send feedback',
+		measurementNote:'Achtung: die visualisierten Daten entsprechen nicht der gesamten Strecke, sondern stimmen nur im Punkt and dem die Messung vorgenommen wurde ',
+		feedback:'Gib uns feedback',
 		cleanroads:'Projekt CLEAN-ROADS',
 		asplic:'Technical aspects and licence',
 		designedBy:'Designed by MadeInCima',	
-		contribute:'Mach mit',
+		contribute:'Dein Beitrag',
 		partner:'Partner',
 	}
 }
