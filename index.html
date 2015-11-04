@@ -11,12 +11,12 @@
 		<script type="text/javascript" src="js/angular.min.js"></script>
 		<script type="text/javascript" src="js/i18n.js"></script>
 		<script type="text/javascript" src="js/app.js"></script>
-		<meta name="viewport" content="width=device-width, user-scalable=no">
+		<meta name="viewport" content="width=device-width">
 
 	</head>
-	<body ng-controller="CleanRoadsCtrl" ng-init="init()">
+	<body ng-controller="CleanRoadsCtrl">
 		<div id="map"></div>
-		<aside class="legend">
+		<aside class="legend" ng-init="mobilepop=false">
 			<div class="langs bluepanel clearfix">
 				<ul>
 					<li><a href="javascript:void(0)" ng-class="lang=='it'?'active':''" ng-click="lang='it'">it</a></li>
@@ -24,13 +24,13 @@
 					<li><a href="javascript:void(0)" ng-class="lang=='en'?'active':''" ng-click="lang='en'">en</a></li>
 				</ul>
 			</div>
-			<div class="header clearfix" ng-init="closed=false">
+			<div class="header clearfix" ng-init="closed=false;">
 				<div class="logo">
 					<img src="img/logo.png" alt="Logo" width="100%">
 				</div>
 				<div class="title">
-					<a href="javascript:void(0)" class="close" ng-show="closed" ng-click="closed=false">&#x274c;</a>
-					<a href="javascript:void(0)" class="close" ng-show="!closed" ng-click="closed=true">&#9776;</a>
+					<a href="javascript:void(0)" class="close" ng-show="closed || mobilepop" ng-click="closed=false;mobilepop=false">&#x274c;</a>
+					<a href="javascript:void(0)" class="close" ng-hide="closed || mobilepop" ng-click="closed=true">&#9776;</a>
 					<h2>Versione <strong>BETA</strong></h2>
 				</div>
 			</div>
@@ -88,32 +88,27 @@
 					<a href="http://ec.europa.eu/environment/life/" target="_blank" class="lifelogo" title="life-program"><img src="img/life.jpg" width="60px" title="life programm"></a>
 				</div>
 			</div>
+			<div class="info-overlay-container" ng-show="mobilepop">
+				<div class="info-overlay clearfix" id ="info-overlay"></div>
+			</div>
 		</aside>
-		<div class="more" ng-init="contribute=false;partner=false;">
-			<div class="voice clearfix partner" ng-class="partner?'show-more':''">
-				<a class="title" href="" ng-click="partner=!partner">{{i18n[lang]['partner']}}</a>
-				<div class="content">
-					<a href="http://www.provincia.tn.it/" target="_blank" title="Provincia di Trento"><img src="img/trento.jpg" alt="Provincia di Trento"></a>
-					<a href="http://www.famassystem.it/" target="_blank" title="Famas Systems"><img src="img/famas.gif" alt="FAMAS"></a>
-					<a href="http://www.tis.bz.it/" target="_blank" title="TIS innovation park"><img src="img/tis.png" alt="TIS innovation park"></a>
-					<a href="http://ec.europa.eu/environment/life/" target="_blank" title="life-program"><img src="img/life.jpg" title="life programm"></a>
-				</div>
+		<div ng-init = "partner = false" class="voice clearfix partner" ng-class="partner?'show-more':''">
+			<a class="title" href="" ng-click="partner=!partner">{{i18n[lang]['partner']}}</a>
+			<div class="content">
+				<a href="http://www.provincia.tn.it/" target="_blank" title="Provincia di Trento"><img src="img/trento.jpg" alt="Provincia di Trento"></a>
+				<a href="http://www.famassystem.it/" target="_blank" title="Famas Systems"><img src="img/famas.gif" alt="FAMAS"></a>
+				<a href="http://www.tis.bz.it/" target="_blank" title="TIS innovation park"><img src="img/tis.png" alt="TIS innovation park"></a>
+				<a href="http://ec.europa.eu/environment/life/" target="_blank" title="life-program"><img src="img/life.jpg" title="life programm"></a>
 			</div>
-			<div class="voice clearfix contribute" ng-class="contribute?'show-more':''">
-				<a class="title" href="" ng-click="contribute=!contribute">{{i18n[lang]['contribute']}}</a>
-				<div class="content">
-					<ul>
-						<li><a href="mailto:open@tis.bz.it">{{i18n[lang]['feedback']}}</a></li>
-						<li><a href="http://clean-roads.eu/" target="_blank">{{i18n[lang]['cleanroads']}}</a></li>
-					</ul>
-				</div>
+		</div>
+		<div ng-init = "contribute = false"  class="voice clearfix contribute" ng-class="contribute?'show-more':''">
+			<a class="title" href="" ng-click="contribute=!contribute">{{i18n[lang]['contribute']}}</a>
+			<div class="content">
+				<ul>
+					<li><a href="mailto:open@tis.bz.it">{{i18n[lang]['feedback']}}</a></li>
+					<li><a href="http://clean-roads.eu/" target="_blank">{{i18n[lang]['cleanroads']}}</a></li>
+				</ul>
 			</div>
-				<!--<div>	
-					<ul>
-						<li><a href="mailto:open@tis.bz.it">blid1</a></li>
-						<li><a href="http://clean-roads.eu/" target="_blank">blid2</a></li>
-					</ul>
-				</div>-->
 		</div>
 		<div id="popup" class="popup clearfix">
 		</div>
