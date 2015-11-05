@@ -130,11 +130,19 @@ a{
 }
 .close{
 	background-color:#00afd6;
-	padding:9px 12px;
+	padding:13px;
 	margin:5px;
 	display:block;
 	color:#fff;
 	float:right;
+	height:15px;
+	width:15px;
+	background-image:url('../img/delete.svg');
+	background-repeat:no-repeat;
+	background-position:center;
+}
+.menu{
+	background-image:url('../img/menu.svg');
 }
 .temphazard{
 	background-image:url('../img/temp.png');

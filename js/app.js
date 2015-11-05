@@ -79,7 +79,7 @@ cleanroads.controller('CleanRoadsCtrl', function ($scope, $window) {
 					content += '<div class="footer">'+self.i18n[self.lang]['updatedOn']+' '+date.locale(self.lang).format('HH.mm DD/MM/YY')+'</div><img src="'+self.icon+'" height="66px" >';
 					$('#info-overlay').html(content);	
 				}else{
-					content =  '<a href="#" class="close" id="closeSign">&#x274c;</a>' + content;
+					content =  '<a href="#" class="close" id="closeSign"></a>' + content;
 		 	               	if (self.feature.getGeometry().getCoordinates()[0]<view.getCenter()[0]){
         	        	                popup.setPositioning("bottom-right");
                 	        	}else{
