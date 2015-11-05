@@ -51,6 +51,10 @@ cleanroads.controller('CleanRoadsCtrl', function ($scope, $window) {
 					self.updateInfos();
 					if (!self.isMobile)
 						self.positionPopup();
+					else{
+						self.mobilepop = true;
+						self.$apply();				
+					}
 			 	}
 			); 
 		});
@@ -74,8 +78,6 @@ cleanroads.controller('CleanRoadsCtrl', function ($scope, $window) {
 				if (self.isMobile){
 					content += '<div class="footer">'+self.i18n[self.lang]['updatedOn']+' '+date.locale(self.lang).format('HH.mm DD/MM/YY')+'</div><img src="'+self.icon+'" height="66px" >';
 					$('#info-overlay').html(content);	
-					self.mobilepop = true;
-					self.$apply();
 				}else{
 					content =  '<a href="#" class="close" id="closeSign">&#x274c;</a>' + content;
 		 	               	if (self.feature.getGeometry().getCoordinates()[0]<view.getCenter()[0]){
