@@ -146,6 +146,8 @@ cleanroads.controller('CleanRoadsCtrl', function ($scope, $window) {
 					case 23: image = 'img/pin-'+positioning+'-snow-03.png';break;
 				}
 			}
+			else
+				image = 'img/pin-'+positioning+'-street-offline.png';
 			return image;
 		}
 		
