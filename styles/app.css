@@ -111,6 +111,11 @@ a{
 .logo{
 	float:left;
 	width:130px;
+	height:130px;
+}
+.logo img{
+	height:80%;
+	padding:10%;
 }
 .header{
 	position:relative;
@@ -343,10 +348,6 @@ ul{
 		height:100%;
 		width:auto;
 	}
-	.logo img{
-		height:80%;
-		padding:10%;
-	}
 	.infos{
 		max-height:0;
 		padding:0;
@@ -357,12 +358,12 @@ ul{
 		height:7vh;
 	}
 	.header{
-		height:12vh;
+		height:14vh;
 	}
 	.openinfo{
 		overflow:auto;
-		max-height:81vh;
-		height:81vh;
+		max-height:79vh;
+		height:79vh;
 		width:100%;
 	        -webkit-transition: 0.5s ease-out;
 	        -moz-transition: 0.5s ease-out;
