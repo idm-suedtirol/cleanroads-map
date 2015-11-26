@@ -18,7 +18,7 @@ var i18n = {
 		lowSnow:'Low intensity snow',
 		mediumSnow:'Medium intensity snow',
 		highSnow:'High intensity snow',
-		measurementNote:'Attenzione: i dati visualizzati sono rappresentativi del punto di misurazione e non dell\'intera tratta stradale ',
+		measurementNote:'Attention: the displayed data are representative of the measurement point only, and not of the entire road stretch',
 		feedback:'Send feedback',
 		cleanroads:'Project CLEAN-ROADS',
 		asplic:'Technical aspects and licence',
