@@ -38,7 +38,7 @@ var i18n = {
 		inbetween:'Cmpresa tra 0°C e 5°C',
 		under:'Temp. strada inferiore a 2°C',
 		rainfall:'Precipitazioni',
-		noRainfall:'Stazione RWIS',
+		noRainfall:'Stazione meteo stradale',
 		lowIntensity:'Pioggia lieve',
 		mediumIntensity:'Pioggia moderata',
 		highIntensity:'Pioggia forte',
