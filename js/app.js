@@ -4,11 +4,12 @@ cleanroads.controller('CleanRoadsCtrl', function ($scope, $window) {
 		var self = $scope;
 		self.i18n = i18n;
 		self.isMobile = mobileCheck();
-		var langIndex = $window.navigator.language.indexOf('-');
+		var language = $window.navigator.language||$window.navigator.userLanguage;
+		var langIndex = language.indexOf('-');
 		if (langIndex === -1)
-			self.lang = $window.navigator.language;
+			self.lang = language;
 		else
-			self.lang = $window.navigator.language.substring(0, langIndex) ||  $window.navigator.userLanguage.substring(navigator.userLanguage.indexOf('-')) || 'it';
+			self.lang = language.substring(0, langIndex) || 'it';
 		$('#'+self.lang).addClass("active");
 		var view = new ol.View({
 		    units: 'm',
