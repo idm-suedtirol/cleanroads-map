@@ -48,7 +48,7 @@ var i18n = {
 		measurementNote:'Attenzione: i dati visualizzati sono rappresentativi del punto di misurazione e non dell\'intera tratta stradale ',
 		feedback:'Invia feedback',
 		cleanroads:'Progetto CLEAN-ROADS',
-		asplic:'Aspetti technici e licenze',
+		asplic:'Aspetti tecnici e licenze',
 		designedBy:'Disegnato da MadeInCima',	
 		contribute:'Contribuisci',
 		partner:'Partner',
