@@ -32,7 +32,7 @@ a{
         -o-transition: 0.5s linear;
         -ms-transition: 0.5s linear;
         transition: 0.5s linear;
-
+	font-family: 'Oswald', sans-serif;
 }
 .popup .stationname,.info-overlay .stationname{
 	color:#00aed7;
@@ -57,17 +57,20 @@ a{
     clear: both;
 }
 .popup>div label,.info-overlay>div label{
-	width:220px;
 	font-weight:bolder;
 	display:block;
+	float:left;
 }
 .popup>div.footer{
-	width:120px;
-	opacity:0.7;
-	float:left;
+	opacity:0.6;
+	float:right;
+	font-size:0.8em;
+	line-height:1.3em;
+	margin-right:35px;
+	margin-top:15px;
 }
-.popup>div *,.info-overlay>div *{
-	float:left;
+.popup>div>div,.info-overlay>div>div{
+	float:right;
 }
 .ol-zoom{
 	left: auto;
@@ -77,7 +80,7 @@ a{
 	position:absolute;
 	top:0;
 	left:0;
-	width:400px;
+	width:290px;
 	margin:0;
 	background-color:#00afd6;
 	color:#fff;
@@ -94,10 +97,12 @@ a{
 	padding:10px;
 	text-transform:uppercase;
 	font-size:12px;
+	font-weight:bold;
+	font-family: 'Oswald';
 }
 .langs ul li{
 	display:inline;
-	margin-right:10px;
+	margin-right:5px;
 }
 .bluepanel ul li a{
 	text-decoration:none;
@@ -114,8 +119,8 @@ a{
 	height:130px;
 }
 .logo img{
-	height:80%;
-	padding:10%;
+	height:74%;
+	padding:13%;
 }
 .header{
 	position:relative;
@@ -125,25 +130,27 @@ a{
 	float:right;
 	font-size:20px;
 }
-.header h2{
+.header .title h2{
 	color:#00afd6;
-	padding:8px;
+	padding:0 8px;
 	margin:0;
 	font-weight:normal;
-	float:right;
+	display:inline-block;
+	vertical-align:middle;
+	line-height:130px;
+	font-size:24px;
 }
 .close{
 	background-color:#00afd6;
 	padding:13px;
-	margin:5px;
-	display:block;
 	color:#fff;
-	float:right;
-	height:15px;
-	width:15px;
+	height:12px;
+	width:12px;
 	background-image:url('../img/delete.svg');
 	background-repeat:no-repeat;
 	background-position:center;
+	background-size:15px;
+	float:right;
 }
 .menu{
 	background-image:url('../img/menu.svg');
@@ -179,7 +186,7 @@ a{
 }
 .infos h2{
 	padding-top:10px;
-	margin-left:40px;
+	margin-left:20px;
 }
 .infos ul{
 	list-style:none;
@@ -190,18 +197,19 @@ a{
 	background-position:right;
 	background-repeat:no-repeat;
 	background-size:contain;
-	padding:15px 0 15px 40px;
+	padding:15px 0 15px 20px;
 }
 .infos ul li:nth-child(2n-1){
 	background-color:#00a7cb;
 }
 .infos p{
 	color:#535353;
-	padding:15px 40px;
+	padding:15px 20px;
+	font-size:12px;
 }
 .legend-footer{
 	position:absolute;
-	bottom:0;
+	bottom:15px;
 	left:50%;
 	width:90%;
 }
@@ -212,6 +220,7 @@ a{
 	z-index:3000;
 	width:100%;
 	background-color:#00afd6;
+	font-size:12px;
 }
 .legend-footer ul{
 	list-style:none;
@@ -241,6 +250,7 @@ a{
     	-ms-transform: rotate(-90deg);
     	-o-transform: rotate(-90deg);
 	transform: rotate(-90deg);
+	font-family: 'Oswald', sans-serif;
 }
 .voice{
 	position:absolute;
@@ -287,13 +297,14 @@ ul{
 }
 .partner .title{
 	background-color:#00afd6;
-	left:-80px;
+	left:-76px;
+	width:68px;
 	top:24px;
 }
 .contribute .title{
 	background-color:#67bb25;
-	left:-94px;
-	top:36px;
+	left:-84px;
+	top:32px;
 }
 .contribute .content{
 	width:250px;
@@ -310,14 +321,15 @@ ul{
 	left:auto;
 	right:0;
 	height:66px;
+	z-index:3000;
 }
 .info-overlay-container{
-	background-color:#fff;
 	margin:0;
 	padding:0;
 	width:100%;	
 	height:79vh;	
 	overflow-x:auto;
+	background-color:#fcfcfc;
 	
 }
 .info-overlay{
@@ -325,8 +337,9 @@ ul{
 	-moz-box-shadow: 0 -4px 5px 0px rgba(0,0,0,0.26);
 	box-shadow: 0 -4px 5px 0px rgba(0,0,0,0.26);
 	width:84%;
-	padding:8%;
+	padding:0 8%;
 	top:6px;
+	background-color:#fcfcfc;
 }
 .info-overlay>div.footer {
 	opacity: 0.7;
@@ -339,7 +352,8 @@ ul{
 		height:auto;
     	}
 	.langs ul{
-		padding:5px;
+		padding:0;
+		line-height:6vh;
 	}
     	.legend>div.legend-footer{
 		display:none;
@@ -355,10 +369,13 @@ ul{
 
 	}
 	.langs{
-		height:7vh;
+		height:6vh;
 	}
 	.header{
-		height:14vh;
+		height:15vh;
+	}
+	.header .title h2{
+		line-height:15vh;
 	}
 	.openinfo{
 		overflow:auto;
@@ -372,7 +389,10 @@ ul{
         	transition: 0.5s ease-out;
 	}
 	.header .close{
-		display:block;
+		display:inline-block;
+		vertical-align:middle;
+		float:none;
+		margin:0 5px;
 	}
 	.voice .title{
 		font-size:14px;
@@ -384,10 +404,10 @@ ul{
 		right:-300px;
 	}
 	.contribute .title{
-		left:-90px;
+		left:-85px;
 	}
 	.partner .title{
-	        left:-74px;
+	        left:-75px;
         	top:20px;
 	}
 	.ol-zoom{

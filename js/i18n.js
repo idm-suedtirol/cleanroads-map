@@ -9,7 +9,7 @@ var i18n = {
 		updatedOn:'Updated at',	
 		over:'Over 5°C',
 		inbetween:'Between 0°C and 5°C',
-		under:'Road surface temperature below 2°C',
+		under:'Road surface temp. below 2°C',
 		rainfall:'Rainfall',
 		noRainfall:'RWIS station',
 		lowIntensity:'Light rain',

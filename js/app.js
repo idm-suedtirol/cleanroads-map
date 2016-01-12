@@ -77,7 +77,7 @@ cleanroads.controller('CleanRoadsCtrl', function ($scope, $window) {
 				'<div><label>'+self.i18n[self.lang]['wind']+'</label> <div>'+self.feature.getProperties()['rel_velocita_vento']+'</div></div>'+
 				'<div><label>'+self.i18n[self.lang]['humidity']+'</label> <div>'+self.feature.getProperties()['rel_umidita_relativa']+'</div></div>';
 				if (self.isMobile){
-					content += '<div class="footer">'+self.i18n[self.lang]['updatedOn']+' '+date.locale(self.lang).format('HH.mm DD/MM/YY')+'</div><img src="'+self.icon+'" height="66px" >';
+					content += '<div class="footer">'+self.i18n[self.lang]['updatedOn']+'<br/> '+date.locale(self.lang).format('HH.mm DD/MM/YY')+'</div><img src="'+self.icon+'" height="66px" >';
 					$('#info-overlay').html(content);	
 				}else{
 					content =  '<a href="#" class="close" id="closeSign"></a>' + content;
@@ -86,9 +86,9 @@ cleanroads.controller('CleanRoadsCtrl', function ($scope, $window) {
                 	        	}else{
                 		                popup.setPositioning("bottom-left");
 						iconPos = 'left:0;right:auto';
-						contentPos = 'float:right';
+						contentPos = 'float:left;margin-left:35px';
 					}
-					content += '<img src="'+self.icon+'" class="popup-icon" style="'+iconPos+'"><div class="footer" style="'+contentPos+'">'+self.i18n[self.lang]['updatedOn']+' '+date.locale(self.lang).format('HH.mm DD/MM/YY')+'</div>';
+					content += '<img src="'+self.icon+'" class="popup-icon" style="'+iconPos+'"><div class="footer" style="'+contentPos+'">'+self.i18n[self.lang]['updatedOn']+' <br/>'+date.locale(self.lang).format('HH.mm DD/MM/YY')+'</div>';
 					box.innerHTML = content;
 					$('#closeSign').click(function(){
 						popup.setPosition(undefined);
