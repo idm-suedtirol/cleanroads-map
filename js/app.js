@@ -83,10 +83,11 @@ cleanroads.controller('CleanRoadsCtrl', function ($scope, $window) {
 					content =  '<a href="#" class="close" id="closeSign"></a>' + content;
 		 	               	if (self.feature.getGeometry().getCoordinates()[0]<view.getCenter()[0]){
         	        	                popup.setPositioning("bottom-right");
+						iconPos = 'float:right;right:-16px';
                 	        	}else{
                 		                popup.setPositioning("bottom-left");
-						iconPos = 'left:0;right:auto';
-						contentPos = 'float:left;margin-left:35px';
+						iconPos = 'left:-16px;right:auto';
+						contentPos = 'float:left;';
 					}
 					content += '<img src="'+self.icon+'" class="popup-icon" style="'+iconPos+'"><div class="footer" style="'+contentPos+'">'+self.i18n[self.lang]['updatedOn']+' <br/>'+date.locale(self.lang).format('HH.mm DD/MM/YY')+'</div>';
 					box.innerHTML = content;

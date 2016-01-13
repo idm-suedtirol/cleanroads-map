@@ -66,8 +66,8 @@ a{
 	float:right;
 	font-size:0.8em;
 	line-height:1.3em;
-	margin-right:35px;
 	margin-top:15px;
+	border-bottom:none;
 }
 .popup>div>div,.info-overlay>div>div{
 	float:right;
@@ -316,8 +316,9 @@ ul{
 	display:none;
 }
 .popup-icon{
-	position:absolute;
+	position:relative;
 	bottom:-21px;
+	float:left;
 	left:auto;
 	right:0;
 	height:66px;
